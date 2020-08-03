@@ -1,0 +1,31 @@
+### Node ###
+dist/
+reports/
+node_modules/
+
+### General ###
+*.log
+
+### OS ###
+.DS_Store
+
+### Visual studio code ###
+.project/
+.settings/
+.classpath/
+bin/
+.sonarlint/
+.vscode/
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+### NetBeans ###
+nbproject/private/
+nbbuild/
+nbdist/
+
