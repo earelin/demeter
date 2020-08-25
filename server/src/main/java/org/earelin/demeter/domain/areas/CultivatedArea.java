@@ -1,7 +1,5 @@
 package org.earelin.demeter.domain.areas;
 
-import java.util.Map;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -23,11 +21,4 @@ public class CultivatedArea {
   private String description;
 
   private Dimensions dimensions;
-
-  @ElementCollection
-  private Map<String, Zone> divisions;
-
-  public Zone getZone(int row, String column) {
-    throw new UnsupportedOperationException();
-  }
 }

@@ -14,22 +14,29 @@
  * limitations under the License.
  */
 
-package org.earelin.demeter.application;
+import React, {useEffect, useState} from 'react'
+import Page from "../components/page";
+import Popup from "../components/popup";
+import axios from "axios";
 
-import org.earelin.demeter.repositories.PlantRepository;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+export default function DiseasesComponent() {
+  const [diseases, setDiseases] = useState([])
 
-@RestController
-@RequestMapping("/api/plants")
-public class PlantController {
+  useEffect(() => {
+    axios.get('/api/diseases')
+    .then(res => {
+      setDiseases(res.data)
+    })
+  }, [])
 
-  private final PlantRepository repository;
+  return (
+    <Page title="Diseases">
+      <Popup trigger={<button>Add</button>}>
 
-  public PlantController(PlantRepository repository) {
-    this.repository = repository;
-  }
+      </Popup>
+      <ul>
 
-//  @GetMapping
-//  public <Plant> findAll
+      </ul>
+    </Page>
+  )
 }

@@ -16,6 +16,7 @@
 
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
+import Popup from 'reactjs-popup';
 
 export default function FamiliesComponent() {
   const [families, setFamilies] = useState([])
@@ -25,12 +26,14 @@ export default function FamiliesComponent() {
       .then(res => {
         setFamilies(res.data)
       })
-  }, families)
+  }, [])
 
   return (
     <section>
       <h2>Families</h2>
-      <button>Add</button>
+      <Popup trigger={<button>Add</button>} modal>
+        <p>Testing popup</p>
+      </Popup>
       <div>
         { families.map(f => Family(f)) }
       </div>

@@ -14,22 +14,8 @@
  * limitations under the License.
  */
 
-package org.earelin.demeter.application;
+package org.earelin.demeter.application.dto.mappers;
 
-import org.earelin.demeter.repositories.PlantRepository;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+public interface PageDtoMapper {
 
-@RestController
-@RequestMapping("/api/plants")
-public class PlantController {
-
-  private final PlantRepository repository;
-
-  public PlantController(PlantRepository repository) {
-    this.repository = repository;
-  }
-
-//  @GetMapping
-//  public <Plant> findAll
 }

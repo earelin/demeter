@@ -2,7 +2,7 @@ package org.earelin.demeter.application;
 
 import java.util.List;
 import org.earelin.demeter.application.dto.CreateFamilyDto;
-import org.earelin.demeter.domain.plants.Family;
+import org.earelin.demeter.domain.catalog.Family;
 import org.earelin.demeter.repositories.FamilyRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -14,22 +14,24 @@
  * limitations under the License.
  */
 
-package org.earelin.demeter.application;
+package org.earelin.demeter.domain.time;
 
-import org.earelin.demeter.repositories.PlantRepository;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import javax.persistence.Embeddable;
+import lombok.Data;
 
-@RestController
-@RequestMapping("/api/plants")
-public class PlantController {
+/**
+ * Date in a generic year.
+ */
+@Data
+@Embeddable
+public class GenericDate {
+  private int month;
+  private int day;
 
-  private final PlantRepository repository;
+  public GenericDate() {}
 
-  public PlantController(PlantRepository repository) {
-    this.repository = repository;
+  public GenericDate(int month, int day) {
+    this.month = month;
+    this.day = day;
   }
-
-//  @GetMapping
-//  public <Plant> findAll
 }

@@ -14,22 +14,23 @@
  * limitations under the License.
  */
 
-package org.earelin.demeter.application;
+import React from 'react'
 
-import org.earelin.demeter.repositories.PlantRepository;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+export default function PopupComponent(props) {
 
-@RestController
-@RequestMapping("/api/plants")
-public class PlantController {
-
-  private final PlantRepository repository;
-
-  public PlantController(PlantRepository repository) {
-    this.repository = repository;
+  function closePopup() {
+    this.className = 'hidden'
   }
 
-//  @GetMapping
-//  public <Plant> findAll
+  return (
+    <div className="hidden">
+      {props.trigger}
+      <div className="popup">
+        <div className="close"><button onClick={closePopup}>Close</button></div>
+        <div className="body">
+          {props.children}
+        </div>
+      </div>
+    </div>
+  )
 }

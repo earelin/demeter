@@ -14,22 +14,15 @@
  * limitations under the License.
  */
 
-package org.earelin.demeter.application;
+import React from 'react'
 
-import org.earelin.demeter.repositories.PlantRepository;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-@RequestMapping("/api/plants")
-public class PlantController {
-
-  private final PlantRepository repository;
-
-  public PlantController(PlantRepository repository) {
-    this.repository = repository;
-  }
-
-//  @GetMapping
-//  public <Plant> findAll
+export default function FertilizersComponent() {
+  return (
+    <section>
+      <h2>Fertilizers</h2>
+      <button>Add</button>
+      <div>
+      </div>
+    </section>
+  )
 }

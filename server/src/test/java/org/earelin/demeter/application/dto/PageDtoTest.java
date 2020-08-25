@@ -22,11 +22,15 @@ import java.util.List;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 
 class PageDtoTest {
 
+  private static final int PAGE_NUMBER = 3;
   private static final int PAGE_SIZE = 10;
-  private static final int TOTAL_ELEMENTS = 99;
+  private static final long TOTAL_ELEMENTS = 99L;
 
   private PageDto<String> page;
 
@@ -45,7 +49,7 @@ class PageDtoTest {
   }
 
   @Test
-  void should_set_and_return_pageSize() {
+  void should_set_and_return_number() {
     page.setPageSize(PAGE_SIZE);
 
     assertThat(page.getPageSize())
@@ -61,6 +65,23 @@ class PageDtoTest {
   }
 
   @Test
+  void should_set_and_return_pageSize() {
+    page.setPageSize(PAGE_SIZE);
+
+    assertThat(page.getPageSize())
+        .isEqualTo(PAGE_SIZE);
+  }
+
+  @Test
+  void should_return_total_number_of_pages() {
+    page.setTotalElements(TOTAL_ELEMENTS);
+    page.setPageSize(PAGE_SIZE);
+
+    assertThat(page.getTotalPages())
+        .isEqualTo(10);
+  }
+
+  @Test
   void should_return_a_string_representation() {
     page.setPageSize(PAGE_SIZE);
     page.setTotalElements(TOTAL_ELEMENTS);
@@ -73,6 +94,24 @@ class PageDtoTest {
             String.valueOf(PAGE_SIZE),
             String.valueOf(TOTAL_ELEMENTS)
         );
+  }
+
+  @Test
+  void should_create_from_a_page() {
+    List<String> content = generateContentList();
+    Page<String> page = new PageImpl<>(
+        content,
+        PageRequest.of(PAGE_NUMBER, PAGE_SIZE),
+        TOTAL_ELEMENTS
+    );
+
+    PageDto<String> pageDto = new PageDto<>(page);
+
+    assertThat(pageDto)
+        .hasFieldOrPropertyWithValue("content", content)
+        .hasFieldOrPropertyWithValue("totalElements", TOTAL_ELEMENTS)
+        .hasFieldOrPropertyWithValue("pageSize", PAGE_SIZE)
+        .hasFieldOrPropertyWithValue("number", PAGE_NUMBER);
   }
 
   List<String> generateContentList() {

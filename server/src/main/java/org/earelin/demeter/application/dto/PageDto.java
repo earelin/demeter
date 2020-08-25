@@ -21,14 +21,25 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.domain.Page;
 
 @Getter
 @Setter
 @ToString
 public class PageDto<K> {
   private List<K> content = new ArrayList<>();
-  private int totalElements;
+  private long totalElements;
   private int pageSize;
+  private int number;
+
+  public PageDto() {}
+
+  public PageDto(Page<K> page) {
+    this.content = page.getContent();
+    this.totalElements = page.getTotalElements();
+    this.pageSize = page.getSize();
+    this.number = page.getNumber();
+  }
 
   public int getTotalPages() {
     return (int) Math.ceil((double) totalElements / pageSize);

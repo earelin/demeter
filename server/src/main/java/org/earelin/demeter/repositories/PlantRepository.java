@@ -16,7 +16,7 @@
 
 package org.earelin.demeter.repositories;
 
-import org.earelin.demeter.domain.plants.Plant;
+import org.earelin.demeter.domain.catalog.Plant;
 import org.springframework.data.repository.CrudRepository;
 
 public interface PlantRepository extends CrudRepository<Plant, Long> {}

@@ -14,22 +14,12 @@
  * limitations under the License.
  */
 
-package org.earelin.demeter.application;
+package org.earelin.demeter.domain.catalog;
 
-import org.earelin.demeter.repositories.PlantRepository;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.earelin.demeter.domain.utils.Unit;
 
-@RestController
-@RequestMapping("/api/plants")
-public class PlantController {
-
-  private final PlantRepository repository;
-
-  public PlantController(PlantRepository repository) {
-    this.repository = repository;
-  }
-
-//  @GetMapping
-//  public <Plant> findAll
+public class Fertilizer {
+  private Long id;
+  private String name;
+  private Unit dosageUnit;
 }

@@ -25,7 +25,7 @@ export default function PlantsComponent() {
     .then(res => {
       setPlants(res.data)
     })
-  }, plants)
+  }, [])
 
   return (
     <section>

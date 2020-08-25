@@ -1,5 +1,7 @@
 package org.earelin.demeter.domain.events;
 
-public class Fertilize extends Event {
+import java.util.Set;
 
+public class Fertilize extends Event {
+  private Set<FertilizerDose> doses;
 }

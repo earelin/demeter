@@ -24,6 +24,9 @@ import {
 } from 'react-router-dom'
 import Families from './families'
 import Plants from './plants'
+import Fertilizers from './fertilizers'
+import Diseases from './diseases'
+import Pests from './pests'
 
 export default function Catalog() {
   const { path, url } = useRouteMatch();
@@ -39,10 +42,28 @@ export default function Catalog() {
         <ul>
           <Link to={`${url}/families`}>Families</Link>
         </ul>
+        <ul>
+          <Link to={`${url}/fertilizers`}>Fertilizers</Link>
+        </ul>
+        <ul>
+          <Link to={`${url}/pests`}>Pests</Link>
+        </ul>
+        <ul>
+          <Link to={`${url}/diseases`}>Diseases</Link>
+        </ul>
       </nav>
       <Switch>
         <Route path={`${path}/families`}>
           <Families />
+        </Route>
+        <Route path={`${path}/fertilizers`}>
+          <Fertilizers />
+        </Route>
+        <Route path={`${path}/pests`}>
+          <Pests />
+        </Route>
+        <Route path={`${path}/diseases`}>
+          <Diseases />
         </Route>
         <Route exact path={path}>
           <Plants />

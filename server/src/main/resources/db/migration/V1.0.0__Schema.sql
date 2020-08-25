@@ -8,7 +8,11 @@ CREATE TABLE plant (
   id BIGINT NOT NULL,
   name VARCHAR(64),
   binomial_name VARCHAR(64),
+  description TEXT,
   separation INT,
+  duration LONG,
+  days_to_germination INT,
+  days_to_maturity INT,
   family_id INT NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (family_id)
@@ -44,6 +48,9 @@ CREATE TABLE cultivar (
   id BIGINT NOT NULL,
   name VARCHAR(64),
   description TEXT,
+  separation INT,
+  days_to_germination INT,
+  days_to_maturity INT,
   plant_id INT NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (plant_id)
