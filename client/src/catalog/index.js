@@ -29,7 +29,8 @@ import Diseases from './diseases'
 import Pests from './pests'
 
 export default function Catalog() {
-  const { path, url } = useRouteMatch();
+  const { path, url } = useRouteMatch()
+
   return (
     <main>
       <header>

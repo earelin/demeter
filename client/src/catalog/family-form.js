@@ -14,14 +14,18 @@
  * limitations under the License.
  */
 
-import React from "react";
+import React from 'react'
 
 export default function FamilyForm(props) {
-  const user = props.user ? props.user : {id: null, name: ''}
+  const family = props.family ? props.family : {id: null, name: ''}
   return (
     <form>
-      <label>Name</label>
-      <input type="text" name="name" value={user.name} />
+      <div className="form-group">
+        <label>Name</label>
+        <input type="text" className="form-control" name="name" value={family.name} />
+      </div>
+      <button className="btn btn-light">Cancel</button>
+      <input type="submit" className="btn btn-primary" value={family.id ? 'Update' : 'Create'} />
     </form>
   )
 }

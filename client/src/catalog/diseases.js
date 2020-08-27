@@ -15,28 +15,37 @@
  */
 
 import React, {useEffect, useState} from 'react'
-import Page from "../components/page";
-import Popup from "../components/popup";
-import axios from "axios";
+import Popup from '../components/popup'
+import axios from 'axios'
+import FamilyForm from './family-form'
 
 export default function DiseasesComponent() {
   const [diseases, setDiseases] = useState([])
 
   useEffect(() => {
     axios.get('/api/diseases')
-    .then(res => {
-      setDiseases(res.data)
-    })
+      .then(res => {
+        setDiseases(res.data)
+      })
   }, [])
 
   return (
-    <Page title="Diseases">
-      <Popup trigger={<button>Add</button>}>
-
+    <>
+      <h2>Diseases</h2>
+      <Popup trigger={<button className="btn btn-primary">Add</button>}>
+        <FamilyForm />
       </Popup>
       <ul>
-
+        {diseases.map(d => Disease(d))}
       </ul>
-    </Page>
+    </>
+  )
+}
+
+function Disease(props) {
+  return (
+    <li>
+      {props.name}
+    </li>
   )
 }

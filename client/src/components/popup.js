@@ -14,21 +14,29 @@
  * limitations under the License.
  */
 
-import React from 'react'
+import React, {useState} from 'react'
+import './popup.scss'
 
 export default function PopupComponent(props) {
+  const [open, setOpen] = useState(false)
 
   function closePopup() {
-    this.className = 'hidden'
+    setOpen(false)
+  }
+
+  function openPopup() {
+    setOpen(true)
   }
 
   return (
-    <div className="hidden">
-      {props.trigger}
+    <div className={open ? 'show' : 'hide'}>
+      <div onClick={openPopup}>{props.trigger}</div>
       <div className="popup">
-        <div className="close"><button onClick={closePopup}>Close</button></div>
-        <div className="body">
-          {props.children}
+        <div className="popup-content">
+          <span className="close" onClick={closePopup}>&times;</span>
+          <div className="body">
+            {props.children}
+          </div>
         </div>
       </div>
     </div>

@@ -23,9 +23,10 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import Catalog from "./catalog/index";
-import Areas from "./areas";
-import Inventory from "./inventory";
+import Catalog from './catalog/index'
+import Areas from './areas'
+import Inventory from './inventory'
+import './index.scss'
 
 function DemeterApplication() {
   return (
