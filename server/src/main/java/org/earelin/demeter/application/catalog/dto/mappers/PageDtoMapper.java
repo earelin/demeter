@@ -14,18 +14,8 @@
  * limitations under the License.
  */
 
-package org.earelin.demeter.domain.areas;
+package org.earelin.demeter.application.catalog.dto.mappers;
 
+public interface PageDtoMapper {
 
-import javax.persistence.Embeddable;
-import lombok.Value;
-
-/**
- * Units are centimeters.
- */
-@Value
-@Embeddable
-public class Position {
-  double x;
-  double y;
 }

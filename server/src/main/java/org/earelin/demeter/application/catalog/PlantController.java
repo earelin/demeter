@@ -14,33 +14,22 @@
  * limitations under the License.
  */
 
-package org.earelin.demeter.domain.catalog;
+package org.earelin.demeter.application.catalog;
 
-import java.util.UUID;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Setter;
+import org.earelin.demeter.repositories.PlantRepository;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Entity
-@Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Family {
+@RestController
+@RequestMapping("/api/plants")
+public class PlantController {
 
-  @Id
-  @EqualsAndHashCode.Include
-  @Setter(AccessLevel.NONE)
-  private String id;
+  private final PlantRepository repository;
 
-  private String name;
-
-  public Family() {
-    this.id = UUID.randomUUID().toString();
+  public PlantController(PlantRepository repository) {
+    this.repository = repository;
   }
 
-  public Family(String id) {
-    this.id = id;
-  }
+//  @GetMapping
+//  public <Plant> findAll
 }

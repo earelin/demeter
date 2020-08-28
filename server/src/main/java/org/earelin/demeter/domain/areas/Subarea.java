@@ -14,22 +14,34 @@
  * limitations under the License.
  */
 
-package org.earelin.demeter.application;
+package org.earelin.demeter.domain.areas;
 
-import org.earelin.demeter.repositories.PlantRepository;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("/api/plants")
-public class PlantController {
+import javax.persistence.Embeddable;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.Value;
 
-  private final PlantRepository repository;
+/**
+ * Units are centimeters.
+ */
+@Setter
+@Getter
+@ToString
+@Embeddable
+public class Subarea {
+  private double x;
+  private double y;
+  private double width;
+  private double height;
 
-  public PlantController(PlantRepository repository) {
-    this.repository = repository;
+  public Subarea() {}
+
+  public Subarea(double x, double y, double width, double height) {
+    this.x = x;
+    this.y = y;
+    this.height = height;
+    this.width = width;
   }
-
-//  @GetMapping
-//  public <Plant> findAll
 }

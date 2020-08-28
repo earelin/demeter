@@ -1,0 +1,7 @@
+spring:
+  flyway:
+    placeholders:
+      text-datatype: 'TEXT'
+  h2:
+    console:
+      enabled: true

@@ -1,9 +1,9 @@
 package org.earelin.demeter.domain.events;
 
 import java.time.LocalDate;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import lombok.AccessLevel;
@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
 import org.earelin.demeter.domain.Crop;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Data
@@ -18,7 +19,7 @@ import org.earelin.demeter.domain.Crop;
 public abstract class Event {
 
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @EqualsAndHashCode.Include
   @Setter(AccessLevel.NONE)
   private Long id;
@@ -30,6 +31,6 @@ public abstract class Event {
 
   private String label;
 
-  @Column(columnDefinition = "TEXT")
+  @Type(type="text")
   private String notes;
 }

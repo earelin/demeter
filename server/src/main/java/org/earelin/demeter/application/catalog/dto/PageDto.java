@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.earelin.demeter.application.dto;
+package org.earelin.demeter.application.catalog.dto;
 
 import java.util.ArrayList;
 import java.util.List;

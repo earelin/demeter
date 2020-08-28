@@ -35,7 +35,7 @@ class PlantTest {
     plant = new Plant(PLANT_ID);
     plant.setName(PLANT_NAME);
     plant.setBinomialName(PLANT_BINOMIAL_NAME);
-    plant.setSeparationInCm(PLANT_SEPARATION);
+    plant.setSeparation(PLANT_SEPARATION);
   }
 
   @Test
@@ -58,7 +58,7 @@ class PlantTest {
 
   @Test
   void should_set_and_return_separation() {
-    assertThat(plant.getSeparationInCm())
+    assertThat(plant.getSeparation())
         .isEqualTo(PLANT_SEPARATION);
   }
 }

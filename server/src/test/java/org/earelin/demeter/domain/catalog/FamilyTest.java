@@ -17,14 +17,14 @@
 package org.earelin.demeter.domain.catalog;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.earelin.demeter.domain.catalog.FamilyGenerator.FAMILY_ALT_ID;
+import static org.earelin.demeter.domain.catalog.FamilyGenerator.FAMILY_ID;
+import static org.earelin.demeter.domain.catalog.FamilyGenerator.FAMILY_NAME;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class FamilyTest {
-
-  public static final Long FAMILY_ID = 12L;
-  public static final String FAMILY_NAME = "Brassicaceae";
 
   private Family family;
 
@@ -86,7 +86,7 @@ class FamilyTest {
   @Test
   void should_not_be_equal_to_other_object_with_different_id() {
     family.setName(FAMILY_NAME);
-    Family compare = new Family(1L);
+    Family compare = new Family("c7f8582a-4762-448d-9a93-a70e87155aab");
     compare.setName(FAMILY_NAME);
 
     assertThat(family.equals(compare))
@@ -105,7 +105,7 @@ class FamilyTest {
   @Test
   void should_not_have_the_same_hashCode_than_other_object_with_different_id() {
     family.setName(FAMILY_NAME);
-    Family compare = new Family(1L);
+    Family compare = new Family(FAMILY_ALT_ID);
     compare.setName(FAMILY_NAME);
 
     assertThat(family.hashCode())

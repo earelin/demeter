@@ -1,0 +1,7 @@
+spring:
+  flyway:
+    placeholders:
+      text-datatype: 'VARCHAR(2147483647)'
+  h2:
+    console:
+      enabled: false

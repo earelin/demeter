@@ -1,8 +1,8 @@
-package org.earelin.demeter.application.dto.mappers;
+package org.earelin.demeter.application.catalog.dto.mappers;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.earelin.demeter.application.dto.CreateFamilyDto;
+import org.earelin.demeter.application.catalog.dto.CreateFamilyDto;
 import org.earelin.demeter.domain.catalog.Family;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

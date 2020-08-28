@@ -14,33 +14,16 @@
  * limitations under the License.
  */
 
-package org.earelin.demeter.domain.catalog;
+package org.earelin.demeter;
 
-import java.util.UUID;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Setter;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import org.junit.jupiter.api.Tag;
 
-@Entity
-@Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Family {
-
-  @Id
-  @EqualsAndHashCode.Include
-  @Setter(AccessLevel.NONE)
-  private String id;
-
-  private String name;
-
-  public Family() {
-    this.id = UUID.randomUUID().toString();
-  }
-
-  public Family(String id) {
-    this.id = id;
-  }
-}
+/** Generic integration test. */
+@Target({ElementType.TYPE, ElementType.METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+@Tag("integration")
+public @interface Integration {}

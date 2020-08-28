@@ -1,14 +1,25 @@
 package org.earelin.demeter.domain.areas;
 
 import javax.persistence.Embeddable;
-import lombok.Value;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * Units are centimeters.
  */
-@Value
+@Setter
+@Getter
+@ToString
 @Embeddable
 public class Dimensions {
-  double length = 0;
-  double width = 0;
+  private double height;
+  private double width;
+
+  public Dimensions() {}
+
+  public Dimensions(double height, double width) {
+    this.height = height;
+    this.width = width;
+  }
 }

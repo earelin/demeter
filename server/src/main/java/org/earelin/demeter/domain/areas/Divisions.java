@@ -14,33 +14,25 @@
  * limitations under the License.
  */
 
-package org.earelin.demeter.domain.catalog;
+package org.earelin.demeter.domain.areas;
 
-import java.util.UUID;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import javax.persistence.Embeddable;
+import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
-@Entity
-@Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Family {
+@Setter
+@Getter
+@ToString
+@Embeddable
+public class Divisions {
+  private int rows;
+  private int columns;
 
-  @Id
-  @EqualsAndHashCode.Include
-  @Setter(AccessLevel.NONE)
-  private String id;
+  public Divisions() {}
 
-  private String name;
-
-  public Family() {
-    this.id = UUID.randomUUID().toString();
-  }
-
-  public Family(String id) {
-    this.id = id;
+  public Divisions(int rows, int columns) {
+    this.rows = rows;
+    this.columns = columns;
   }
 }

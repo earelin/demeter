@@ -14,8 +14,19 @@
  * limitations under the License.
  */
 
-package org.earelin.demeter.application.dto.mappers;
+package org.earelin.demeter.domain.time;
 
-public interface PageDtoMapper {
+import javax.persistence.Embeddable;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@ToString
+@Embeddable
+public class DatePeriod {
+  private int years;
+  private int months;
+  private int days;
 }
