@@ -23,7 +23,7 @@ import org.junit.jupiter.api.Test;
 
 class DiseaseTest {
 
-  public static final Long DISEASE_ID = 12L;
+  public static final String DISEASE_ID = "cd21d41f-be69-431d-a36a-1253aba6b945";
   public static final String DISEASE_NAME = "Scab";
   public static final String DISEASE_DESCRIPTION = "Causes brown patches.";
 
@@ -95,7 +95,7 @@ class DiseaseTest {
   @Test
   void should_not_be_equal_to_other_object_with_different_id() {
     disease.setName(DISEASE_NAME);
-    Disease compare = new Disease(1L);
+    Disease compare = new Disease("77b93c0d-a9d8-40c3-a52a-24f5bf3bf69e");
     compare.setName(DISEASE_NAME);
 
     assertThat(disease.equals(compare))
@@ -114,7 +114,7 @@ class DiseaseTest {
   @Test
   void should_not_have_the_same_hashCode_than_other_object_with_different_id() {
     disease.setName(DISEASE_NAME);
-    Disease compare = new Disease(1L);
+    Disease compare = new Disease("77b93c0d-a9d8-40c3-a52a-24f5bf3bf69e");
     compare.setName(DISEASE_NAME);
 
     assertThat(disease.hashCode())

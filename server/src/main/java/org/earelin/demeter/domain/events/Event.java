@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -14,15 +16,15 @@ import org.earelin.demeter.domain.Crop;
 import org.hibernate.annotations.Type;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public abstract class Event {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @EqualsAndHashCode.Include
   @Setter(AccessLevel.NONE)
-  private Long id;
+  private String id;
 
   @ManyToOne
   private Crop crop;

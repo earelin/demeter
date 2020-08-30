@@ -16,13 +16,11 @@
 
 package org.earelin.demeter.domain.catalog;
 
-import java.time.Period;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,7 +35,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
 import org.earelin.demeter.domain.time.DatePeriod;
-import org.earelin.demeter.domain.time.GenericDateInterval;
 import org.hibernate.annotations.Type;
 
 @Entity
@@ -46,10 +43,9 @@ import org.hibernate.annotations.Type;
 public class Plant {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @EqualsAndHashCode.Include
   @Setter(AccessLevel.NONE)
-  private Long id;
+  private String id;
 
   private String name;
 
@@ -61,8 +57,6 @@ public class Plant {
   @Type(type="text")
   private String description;
 
-  private Integer separation;
-
   @ManyToMany
   @JoinTable(
       name = "plant_friends",
@@ -70,7 +64,7 @@ public class Plant {
       inverseJoinColumns = @JoinColumn(name = "plant_b_id")
   )
   @Setter(AccessLevel.NONE)
-  private Set<Plant> friends;
+  private Set<Plant> friends = new HashSet<>();
 
   @ManyToMany
   @JoinTable(
@@ -79,43 +73,11 @@ public class Plant {
       inverseJoinColumns = @JoinColumn(name = "plant_b_id")
   )
   @Setter(AccessLevel.NONE)
-  private Set<Plant> foes;
-
-  @ElementCollection
-  @Setter(AccessLevel.NONE)
-  private List<GenericDateInterval> sow;
-
-  @ElementCollection
-  @Setter(AccessLevel.NONE)
-  private List<GenericDateInterval> harvest;
-
-  @Embedded
-  @AttributeOverrides({
-      @AttributeOverride(name = "days", column = @Column(name = "germinationDays")),
-      @AttributeOverride(name = "months", column = @Column(name = "germinationMonths")),
-      @AttributeOverride(name = "years", column = @Column(name = "germinationYears"))
-  })
-  private DatePeriod germination;
-
-  @Embedded
-  @AttributeOverrides({
-      @AttributeOverride(name = "days", column = @Column(name = "maturityDays")),
-      @AttributeOverride(name = "months", column = @Column(name = "maturityMonths")),
-      @AttributeOverride(name = "years", column = @Column(name = "maturityYears"))
-  })
-  private DatePeriod maturity;
-
-  @Embedded
-  @AttributeOverrides({
-      @AttributeOverride(name = "days", column = @Column(name = "lifespanDays")),
-      @AttributeOverride(name = "months", column = @Column(name = "lifespanMonths")),
-      @AttributeOverride(name = "years", column = @Column(name = "lifespanYears"))
-  })
-  private DatePeriod lifespan;
+  private Set<Plant> foes = new HashSet<>();
 
   public Plant() {}
 
-  public Plant(Long id) {
+  public Plant(String id) {
     this.id = id;
   }
 }

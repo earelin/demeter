@@ -16,8 +16,33 @@
 
 package org.earelin.demeter.domain.utils;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+
+@Entity
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Unit {
-  private Long id;
+
+  @Id
+  @EqualsAndHashCode.Include
+  @Setter(AccessLevel.NONE)
+  private String id;
+
+  @Enumerated(EnumType.STRING)
   private UnitType type;
+
   private String name;
+
+  public Unit() {}
+
+  public Unit(String id) {
+    this.id = id;
+  }
 }

@@ -18,7 +18,7 @@ package org.earelin.demeter.domain.catalog;
 
 import java.util.List;
 
-public class FamilyGenerator {
+public final class FamilyGenerator {
 
   public static final String FAMILY_ID = "9e1176e1-1c48-428b-a9cd-f6348422f0f0";
   public static final String FAMILY_NAME = "Brassicaceae";

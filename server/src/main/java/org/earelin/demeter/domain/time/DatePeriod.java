@@ -17,15 +17,28 @@
 package org.earelin.demeter.domain.time;
 
 import javax.persistence.Embeddable;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
-@Getter
-@Setter
-@ToString
+@Data
 @Embeddable
 public class DatePeriod {
+
+  public static DatePeriod of(int years, int months, int days) {
+    DatePeriod datePeriod = new DatePeriod();
+    datePeriod.setYears(years);
+    datePeriod.setMonths(months);
+    datePeriod.setDays(days);
+    return datePeriod;
+  }
+
+  public static DatePeriod of(int months, int days) {
+    return of(0, months, days);
+  }
+
+  public static DatePeriod of(int days) {
+    return of(0, 0, days);
+  }
+
   private int years;
   private int months;
   private int days;

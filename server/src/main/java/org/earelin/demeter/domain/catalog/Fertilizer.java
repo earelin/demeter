@@ -16,10 +16,37 @@
 
 package org.earelin.demeter.domain.catalog;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 import org.earelin.demeter.domain.utils.Unit;
+import org.hibernate.annotations.Type;
 
+@Data
+@Entity
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Fertilizer {
-  private Long id;
+
+  @Id
+  @EqualsAndHashCode.Include
+  @Setter(AccessLevel.NONE)
+  private String id;
+
   private String name;
+
+  @Type(type="text")
+  private String description;
+
+  @ManyToOne
   private Unit dosageUnit;
+
+  public Fertilizer() {}
+
+  public Fertilizer(String id) {
+    this.id = id;
+  }
 }

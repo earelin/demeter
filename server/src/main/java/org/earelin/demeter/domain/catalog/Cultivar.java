@@ -16,7 +16,6 @@
 
 package org.earelin.demeter.domain.catalog;
 
-import java.time.Period;
 import java.util.List;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -24,9 +23,8 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -41,17 +39,22 @@ import org.hibernate.annotations.Type;
 public class Cultivar {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @EqualsAndHashCode.Include
   @Setter(AccessLevel.NONE)
-  private Long id = null;
+  private String id = null;
+
+  @ManyToOne
+  private Plant plant;
 
   private String name;
 
   @Type(type="text")
   private String description;
 
-  private Integer separation;
+  /**
+   * Separation in CM.
+   */
+  private Double separation;
 
   @ElementCollection
   @Setter(AccessLevel.NONE)
@@ -87,7 +90,7 @@ public class Cultivar {
 
   public Cultivar() {}
 
-  public Cultivar(Long id) {
+  public Cultivar(String id) {
     this.id = id;
   }
 }

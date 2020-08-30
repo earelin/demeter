@@ -23,10 +23,9 @@ import org.hibernate.annotations.Type;
 public class Crop {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @EqualsAndHashCode.Include
   @Setter(AccessLevel.NONE)
-  private Long id;
+  private String id;
 
   private String label;
 
@@ -42,7 +41,7 @@ public class Crop {
 
   public Crop() {}
 
-  public Crop(Long id) {
+  public Crop(String id) {
     this.id = id;
   }
 }

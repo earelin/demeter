@@ -16,8 +16,26 @@
 
 package org.earelin.demeter.domain.catalog;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
+import org.hibernate.annotations.Type;
+
+@Data
+@Entity
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Pest {
-  private Long id;
+
+  @Id
+  @EqualsAndHashCode.Include
+  @Setter(AccessLevel.NONE)
+  private String id;
+
   private String name;
+
+  @Type(type="text")
   private String description;
 }
