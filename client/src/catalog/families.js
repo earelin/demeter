@@ -16,12 +16,23 @@
 
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch
+} from 'react-router-dom';
+import Plants from "./plants";
+import FamilyForm from "./family-form";
+import FamilyFormDelete from "./family-form-delete";
 
 export default function FamiliesComponent() {
+  const { path, url } = useRouteMatch()
   const [families, setFamilies] = useState([])
 
   useEffect(() => {
-    axios.get('/api/families')
+    axios.get('/api/v1/families')
       .then(res => {
         setFamilies(res.data)
       })
@@ -30,19 +41,40 @@ export default function FamiliesComponent() {
   return (
     <section>
       <h2>Families</h2>
-      <div>
-        { families.map(f => Family(f)) }
-      </div>
+      <Switch>
+        <Route path={`${path}/add`}>
+          <FamilyForm />
+        </Route>
+        <Route path={`${path}/:id/edit`}>
+          <FamilyForm />
+        </Route>
+        <Route path={`${path}/:id/delete`}>
+          <FamilyFormDelete />
+        </Route>
+        <Route exact path={path}>
+          <Link to={`${url}/add`}>Add</Link>
+          <Families families={families} />
+        </Route>
+      </Switch>
     </section>
   )
 }
 
+function Families(props) {
+  return (
+    <div>
+      { props.families.map(f => Family(f)) }
+    </div>
+  )
+}
+
 function Family(family) {
+  const { url } = useRouteMatch()
   return (
     <article key={family.id}>
       {family.name}
-      <button>Edit</button>
-      <button>Delete</button>
+      <Link to={`${url}/${family.id}/edit`}>Edit</Link>
+      <Link to={`${url}/${family.id}/delete`}>Delete</Link>
     </article>
   )
 }

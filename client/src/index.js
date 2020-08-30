@@ -31,38 +31,66 @@ import './index.scss'
 function DemeterApplication() {
   return (
     <Router>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/catalog">Catalog</Link>
-          </li>
-          <li>
-            <Link to="/areas">Cultivation Areas</Link>
-          </li>
-          <li>
-            <Link to="/inventory">Inventory</Link>
-          </li>
-        </ul>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="container-fluid">
+          <Link className="navbar-brand" to="/">Demeter</Link>
+        </div>
       </nav>
 
-      <Switch>
-        <Route path="/areas">
-          <Areas />
-        </Route>
-        <Route path="/catalog">
-          <Catalog />
-        </Route>
-        <Route path="/inventory">
-          <Inventory />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
+      <nav className="navbar navbar-expand-lg navbar-light bg-primary">
+        <div className="container-fluid">
+          <div className="collapse navbar-collapse">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item">
+                <Link className="nav-link" to="/">Home</Link>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link">Catalog</a>
+                <ul className="dropdown-menu">
+                  <li className="dropdown-item">
+                    <Link className="nav-link" to="/catalog/families">Families</Link>
+                  </li>
+                  <li className="dropdown-item">
+                    <Link className="nav-link" to="/catalog/plants">Plants</Link>
+                  </li>
+                  <li className="dropdown-item">
+                    <Link className="nav-link" to="/catalog/diseases">Diseases</Link>
+                  </li>
+                  <li className="dropdown-item">
+                    <Link className="nav-link" to="/catalog/pests">Pests</Link>
+                  </li>
+                  <li className="dropdown-item">
+                    <Link className="nav-link" to="/catalog/fertilizers">Fertilizers</Link>
+                  </li>
+                </ul>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/areas">Cultivation Areas</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/inventory">Inventory</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
 
+      <div className="container-fluid">
+        <Switch>
+          <Route path="/areas">
+            <Areas />
+          </Route>
+          <Route path="/catalog">
+            <Catalog />
+          </Route>
+          <Route path="/inventory">
+            <Inventory />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
     </Router>
   )
 }

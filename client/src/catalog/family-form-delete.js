@@ -14,49 +14,38 @@
  * limitations under the License.
  */
 
-import React, {useEffect, useState} from 'react'
-import {
-  Link,
-  useHistory,
-  useParams
-} from 'react-router-dom'
-import axios from 'axios'
-import { useForm } from 'react-hook-form'
 
-export default function FamilyForm(props) {
+import React, {useEffect, useState} from 'react'
+import {Link, useHistory, useParams} from 'react-router-dom'
+import axios from 'axios'
+
+export default function FamilyFormDelete() {
   const { id } = useParams()
   const [family, setFamily] = useState([])
-  const { register, handleSubmit } = useForm()
   const history = useHistory()
 
   useEffect(() => {
     if (id) {
       axios.get(`/api/v1/families/${id}`)
-        .then(res => {
-          setFamily(res.data)
-        })
+      .then(res => {
+        setFamily(res.data)
+      })
     }
   }, [])
 
-  function onSubmit(family) {
-    if (family.id === "") {
-      axios.post('/api/v1/families', {name: family.name})
-    } else {
-      axios.put(`/api/v1/families/${family.id}`, family)
-    }
-
+  function deleteFamily() {
+    axios.delete(`/api/v1/families/${family.id}`)
     history.push('/catalog/families')
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="form-group">
-        <label>Name</label>
-        <input type="hidden" name="id" defaultValue={family.id} ref={register} />
-        <input type="text" name="name" defaultValue={family.name} ref={register({ required: true })} />
+    <>
+      <p>Do you want to delete <strong>{family.name}</strong> family?</p>
+      <div>
+        <Link to="/catalog/families">Cancel</Link>
+        <button onClick={deleteFamily}>Yes</button>
       </div>
-      <Link to="/catalog/families">Cancel</Link>
-      <input type="submit" value={family.id ? 'Update' : 'Create'} />
-    </form>
+    </>
   )
 }
+

@@ -23,7 +23,7 @@ export default function DiseasesComponent() {
   const [diseases, setDiseases] = useState([])
 
   useEffect(() => {
-    axios.get('/api/diseases')
+    axios.get('/api/v1/diseases')
       .then(res => {
         setDiseases(res.data)
       })
@@ -32,9 +32,7 @@ export default function DiseasesComponent() {
   return (
     <>
       <h2>Diseases</h2>
-      <Popup trigger={<button className="btn btn-primary">Add</button>}>
-        <FamilyForm />
-      </Popup>
+      <a className="btn btn-primary">Add</a>
       <ul>
         {diseases.map(d => Disease(d))}
       </ul>
