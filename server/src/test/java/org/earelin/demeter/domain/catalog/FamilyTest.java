@@ -53,7 +53,7 @@ class FamilyTest {
 
     assertThat(family.toString())
         .startsWith(Family.class.getSimpleName())
-        .contains(FAMILY_ID.toString(), FAMILY_NAME);
+        .contains(FAMILY_ID, FAMILY_NAME);
   }
 
   @Test

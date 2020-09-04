@@ -18,6 +18,7 @@ import org.earelin.demeter.application.catalog.FamilyController;
 import org.earelin.demeter.application.catalog.dto.CreateFamilyDto;
 import org.earelin.demeter.application.catalog.dto.mappers.CreateFamilyDtoMapper;
 import org.earelin.demeter.domain.catalog.Family;
+import org.earelin.demeter.factories.catalog.FamilyFactory;
 import org.earelin.demeter.repositories.FamilyRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -41,7 +42,7 @@ class FamilyControllerTest {
 
   @BeforeEach
   void setUp() {
-    familyController = new FamilyController(familyRepository, mapper);
+    familyController = new FamilyController(familyRepository, new FamilyFactory());
     RestAssuredMockMvc.standaloneSetup(familyController);
   }
 

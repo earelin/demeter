@@ -14,30 +14,20 @@
  * limitations under the License.
  */
 
-package org.earelin.demeter.domain.catalog;
+package org.earelin.demeter.factories.catalog;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Setter;
+import java.util.UUID;
+import org.earelin.demeter.domain.catalog.Family;
+import org.springframework.stereotype.Component;
 
-@Entity
-@Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Family {
+@Component
+public class FamilyFactory {
 
-  @Id
-  @EqualsAndHashCode.Include
-  @Setter(AccessLevel.NONE)
-  private String id;
-
-  private String name;
-
-  public Family() {}
-
-  public Family(String id) {
-    this.id = id;
+  public Family build(String name) {
+    String id = UUID.randomUUID().toString();
+    Family family = new Family(id);
+    family.setName(name);
+    return family;
   }
+
 }

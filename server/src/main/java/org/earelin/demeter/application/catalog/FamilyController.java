@@ -20,6 +20,7 @@ import java.util.List;
 import org.earelin.demeter.application.catalog.dto.CreateFamilyDto;
 import org.earelin.demeter.application.catalog.dto.mappers.CreateFamilyDtoMapper;
 import org.earelin.demeter.domain.catalog.Family;
+import org.earelin.demeter.factories.catalog.FamilyFactory;
 import org.earelin.demeter.repositories.FamilyRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,12 +39,12 @@ import org.springframework.web.server.ResponseStatusException;
 public class FamilyController {
 
   private final FamilyRepository repository;
-  private final CreateFamilyDtoMapper createFamilyDtoMapper;
+  private final FamilyFactory familyFactory;
 
   public FamilyController(FamilyRepository repository,
-      CreateFamilyDtoMapper createFamilyDtoMapper) {
+      FamilyFactory familyFactory) {
     this.repository = repository;
-    this.createFamilyDtoMapper = createFamilyDtoMapper;
+    this.familyFactory = familyFactory;
   }
 
   @GetMapping
@@ -73,8 +74,8 @@ public class FamilyController {
 
   @PostMapping
   public ResponseEntity<Family> create(@RequestBody CreateFamilyDto createFamilyDto) {
-    Family family = new Family();
-    createFamilyDtoMapper.updateDomainFromDto(createFamilyDto, family);
+    Family family = familyFactory.build(createFamilyDto.getName());
+
     return new ResponseEntity<>(repository.save(family), HttpStatus.CREATED);
   }
 
