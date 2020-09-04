@@ -16,7 +16,6 @@ import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import java.util.Optional;
 import org.earelin.demeter.application.catalog.FamilyController;
 import org.earelin.demeter.application.catalog.dto.CreateFamilyDto;
-import org.earelin.demeter.application.catalog.dto.mappers.CreateFamilyDtoMapper;
 import org.earelin.demeter.domain.catalog.Family;
 import org.earelin.demeter.factories.catalog.FamilyFactory;
 import org.earelin.demeter.repositories.FamilyRepository;
@@ -32,9 +31,6 @@ class FamilyControllerTest {
 
   @Mock
   private FamilyRepository familyRepository;
-
-  @Mock
-  private CreateFamilyDtoMapper mapper;
 
   private Gson gson = new Gson();
 

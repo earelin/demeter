@@ -18,7 +18,6 @@ package org.earelin.demeter.application.catalog;
 
 import java.util.List;
 import org.earelin.demeter.application.catalog.dto.CreateFamilyDto;
-import org.earelin.demeter.application.catalog.dto.mappers.CreateFamilyDtoMapper;
 import org.earelin.demeter.domain.catalog.Family;
 import org.earelin.demeter.factories.catalog.FamilyFactory;
 import org.earelin.demeter.repositories.FamilyRepository;
