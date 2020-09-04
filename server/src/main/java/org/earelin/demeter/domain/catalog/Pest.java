@@ -16,8 +16,12 @@
 
 package org.earelin.demeter.domain.catalog;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -38,4 +42,18 @@ public class Pest {
 
   @Type(type="text")
   private String description;
+
+  @ManyToMany
+  @Setter(AccessLevel.NONE)
+  private Set<Plant> foes = new HashSet<>();
+
+  @ManyToMany
+  @Setter(AccessLevel.NONE)
+  private Set<Plant> targets = new HashSet<>();
+
+  public Pest() {}
+
+  public Pest(String id) {
+    this.id = id;
+  }
 }

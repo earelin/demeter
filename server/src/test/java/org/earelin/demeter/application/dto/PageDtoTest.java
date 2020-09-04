@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package org.earelin.demeter.application.catalog.dto;
+package org.earelin.demeter.application.dto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import org.assertj.core.util.Lists;
+import org.earelin.demeter.application.dto.PageDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Page;
@@ -50,10 +51,10 @@ class PageDtoTest {
 
   @Test
   void should_set_and_return_number() {
-    page.setPageSize(PAGE_SIZE);
+    page.setNumber(PAGE_NUMBER);
 
-    assertThat(page.getPageSize())
-        .isEqualTo(PAGE_SIZE);
+    assertThat(page.getNumber())
+        .isEqualTo(PAGE_NUMBER);
   }
 
   @Test
@@ -66,16 +67,16 @@ class PageDtoTest {
 
   @Test
   void should_set_and_return_pageSize() {
-    page.setPageSize(PAGE_SIZE);
+    page.setSize(PAGE_SIZE);
 
-    assertThat(page.getPageSize())
+    assertThat(page.getSize())
         .isEqualTo(PAGE_SIZE);
   }
 
   @Test
   void should_return_total_number_of_pages() {
     page.setTotalElements(TOTAL_ELEMENTS);
-    page.setPageSize(PAGE_SIZE);
+    page.setSize(PAGE_SIZE);
 
     assertThat(page.getTotalPages())
         .isEqualTo(10);
@@ -83,7 +84,7 @@ class PageDtoTest {
 
   @Test
   void should_return_a_string_representation() {
-    page.setPageSize(PAGE_SIZE);
+    page.setSize(PAGE_SIZE);
     page.setTotalElements(TOTAL_ELEMENTS);
     page.setContent(generateContentList());
 
@@ -110,7 +111,7 @@ class PageDtoTest {
     assertThat(pageDto)
         .hasFieldOrPropertyWithValue("content", content)
         .hasFieldOrPropertyWithValue("totalElements", TOTAL_ELEMENTS)
-        .hasFieldOrPropertyWithValue("pageSize", PAGE_SIZE)
+        .hasFieldOrPropertyWithValue("size", PAGE_SIZE)
         .hasFieldOrPropertyWithValue("number", PAGE_NUMBER);
   }
 

@@ -20,12 +20,23 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.earelin.demeter.domain.catalog.Disease;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
+@ToString(callSuper = true)
 @Entity
 public class DiseaseAttack extends Event {
+
+  private Integer number;
+
   @ManyToOne
   private Disease disease;
+
+  public DiseaseAttack(String id) {
+    super(id);
+  }
+
+  public DiseaseAttack() {}
 }

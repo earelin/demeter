@@ -17,6 +17,10 @@
 package org.earelin.demeter.repositories;
 
 import org.earelin.demeter.domain.catalog.Plant;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
-public interface PlantRepository extends CrudRepository<Plant, Long> {}
+public interface PlantRepository extends CrudRepository<Plant, Long> {
+  Page<Plant> findAllByOrderByName(Pageable pageable);
+}

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.earelin.demeter.application.catalog.dto;
+package org.earelin.demeter.application.dto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ import org.springframework.data.domain.Page;
 public class PageDto<K> {
   private List<K> content = new ArrayList<>();
   private long totalElements;
-  private int pageSize;
+  private int size;
   private int number;
 
   public PageDto() {}
@@ -37,11 +37,11 @@ public class PageDto<K> {
   public PageDto(Page<K> page) {
     this.content = page.getContent();
     this.totalElements = page.getTotalElements();
-    this.pageSize = page.getSize();
+    this.size = page.getSize();
     this.number = page.getNumber();
   }
 
   public int getTotalPages() {
-    return (int) Math.ceil((double) totalElements / pageSize);
+    return (int) Math.ceil((double) totalElements / size);
   }
 }

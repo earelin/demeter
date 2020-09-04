@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-package org.earelin.demeter.application.catalog.dto.mappers;
+package org.earelin.demeter.application.dto;
 
-public interface PageDtoMapper {
-
+public enum SortDirection {
+  ASC, DESC
 }

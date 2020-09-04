@@ -14,34 +14,23 @@
  * limitations under the License.
  */
 
-package org.earelin.demeter.domain.areas;
+package org.earelin.demeter.domain.events;
 
+import org.earelin.demeter.domain.catalog.Disease;
+import org.junit.jupiter.api.BeforeEach;
 
-import javax.persistence.Embeddable;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-import lombok.Value;
+class DiseaseAttackTest {
 
-/**
- * Units are millimeters.
- */
-@Setter
-@Getter
-@ToString
-@Embeddable
-public class Subarea {
-  private double x;
-  private double y;
-  private double width;
-  private double height;
+  public static final String EVENT_ID = "d0008f66-d928-42aa-958c-31d63400ddd5";
+  public static final int EVENT_NUMBER = 4;
+  public static final Disease EVENT_DISEASE = new Disease("9f6ef081-2bfd-41f3-91a8-e40be7ad1505");
 
-  public Subarea() {}
+  private DiseaseAttack diseaseAttack;
 
-  public Subarea(double x, double y, double width, double height) {
-    this.x = x;
-    this.y = y;
-    this.height = height;
-    this.width = width;
+  @BeforeEach
+  void setUp() {
+    diseaseAttack = new DiseaseAttack(EVENT_ID);
+    diseaseAttack.setNumber(EVENT_NUMBER);
   }
+
 }

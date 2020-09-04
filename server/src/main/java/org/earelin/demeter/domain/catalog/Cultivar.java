@@ -16,6 +16,8 @@
 
 package org.earelin.demeter.domain.catalog;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -58,11 +60,11 @@ public class Cultivar {
 
   @ElementCollection
   @Setter(AccessLevel.NONE)
-  private List<GenericDateInterval> sow;
+  private List<GenericDateInterval> sow = new ArrayList<>();
 
   @ElementCollection
   @Setter(AccessLevel.NONE)
-  private List<GenericDateInterval> harvest;
+  private List<GenericDateInterval> harvest = new ArrayList<>();
 
   @Embedded
   @AttributeOverrides({

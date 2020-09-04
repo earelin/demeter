@@ -1,10 +1,3 @@
-CREATE TABLE disease (
-  id VARCHAR(36) NOT NULL,
-  name VARCHAR(64),
-  description ${text-datatype},
-  PRIMARY KEY (id)
-);
-
 CREATE TABLE family (
   id VARCHAR(36) NOT NULL,
   name VARCHAR(64),
@@ -128,11 +121,54 @@ CREATE TABLE fertilizer (
     ON DELETE CASCADE
 );
 
+CREATE TABLE disease (
+  id VARCHAR(36) NOT NULL,
+  name VARCHAR(64),
+  description ${text-datatype},
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE disease_targets (
+  disease_id VARCHAR(36) NOT NULL,
+  targets_id VARCHAR(36) NOT NULL,
+  PRIMARY KEY (disease_id, targets_id),
+  FOREIGN KEY (disease_id)
+    REFERENCES disease(id)
+    ON DELETE CASCADE,
+  FOREIGN KEY (targets_id)
+    REFERENCES plant(id)
+    ON DELETE CASCADE
+);
+
 CREATE TABLE pest (
   id VARCHAR(36) NOT NULL,
   name VARCHAR(64) NOT NULL,
   description ${text-datatype},
   PRIMARY KEY (id)
+);
+
+CREATE TABLE pest_targets (
+  pest_id VARCHAR(36) NOT NULL,
+  targets_id VARCHAR(36) NOT NULL,
+  PRIMARY KEY (pest_id, targets_id),
+  FOREIGN KEY (pest_id)
+    REFERENCES pest(id)
+    ON DELETE CASCADE,
+  FOREIGN KEY (targets_id)
+    REFERENCES plant(id)
+    ON DELETE CASCADE
+);
+
+CREATE TABLE pest_foes (
+  pest_id VARCHAR(36) NOT NULL,
+  foes_id VARCHAR(36) NOT NULL,
+  PRIMARY KEY (pest_id, foes_id),
+  FOREIGN KEY (pest_id)
+    REFERENCES pest(id)
+    ON DELETE CASCADE,
+  FOREIGN KEY (foes_id)
+    REFERENCES plant(id)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE event (
@@ -149,6 +185,7 @@ CREATE TABLE event (
 
 CREATE TABLE dead (
   id VARCHAR(36) NOT NULL,
+  number INT,
   PRIMARY KEY (id),
   FOREIGN KEY (id)
     REFERENCES event(id)
@@ -157,6 +194,7 @@ CREATE TABLE dead (
 
 CREATE TABLE disease_attack (
   id VARCHAR(36) NOT NULL,
+  number INTEGER,
   disease_id VARCHAR(36),
   PRIMARY KEY (id),
   FOREIGN KEY (id)
@@ -169,10 +207,15 @@ CREATE TABLE disease_attack (
 
 CREATE TABLE harvest (
   id VARCHAR(36) NOT NULL,
+  quantity DOUBLE,
+  unit_id VARCHAR(36),
   PRIMARY KEY (id),
   FOREIGN KEY (id)
     REFERENCES event(id)
-    ON DELETE CASCADE
+    ON DELETE CASCADE,
+  FOREIGN KEY (unit_id)
+    REFERENCES unit(id)
+    ON DELETE SET NULL
 );
 
 CREATE TABLE pest_attack (

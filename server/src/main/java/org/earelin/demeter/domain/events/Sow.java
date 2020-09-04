@@ -12,8 +12,11 @@ import org.earelin.demeter.domain.areas.Subarea;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 public class Sow extends Event {
+
   private int seeds;
+
   @ManyToOne
   private CultivatedArea cultivatedArea;
+
   private Subarea position;
 }

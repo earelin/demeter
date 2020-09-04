@@ -2,8 +2,6 @@ package org.earelin.demeter.domain.events;
 
 import java.time.LocalDate;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -35,4 +33,10 @@ public abstract class Event {
 
   @Type(type="text")
   private String notes;
+
+  public Event() {}
+
+  public Event(String id) {
+    this.id = id;
+  }
 }

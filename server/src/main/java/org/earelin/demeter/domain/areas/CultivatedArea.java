@@ -28,4 +28,10 @@ public class CultivatedArea {
 
   @Embedded
   private Dimensions dimensions;
+
+  public CultivatedArea() {}
+
+  public CultivatedArea(String id) {
+    this.id = id;
+  }
 }

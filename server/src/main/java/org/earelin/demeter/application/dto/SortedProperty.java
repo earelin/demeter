@@ -14,39 +14,33 @@
  * limitations under the License.
  */
 
-package org.earelin.demeter.domain.catalog;
+package org.earelin.demeter.application.dto;
 
-import java.util.HashSet;
-import java.util.Set;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Setter;
 
-@Entity
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Disease {
+public class SortedProperty {
 
-  @Id
+  public static SortedProperty asc(String name) {
+    return new SortedProperty(name);
+  }
+
+  public static SortedProperty desc(String name) {
+    SortedProperty sortedProperty = new SortedProperty(name);
+    sortedProperty.setDirection(SortDirection.DESC);
+    return sortedProperty;
+  }
+
   @EqualsAndHashCode.Include
-  @Setter(AccessLevel.NONE)
-  private String id;
-
   private String name;
 
-  private String description;
+  private SortDirection direction = SortDirection.ASC;
 
-  @ManyToMany
-  @Setter(AccessLevel.NONE)
-  private Set<Plant> targets = new HashSet<>();
+  public SortedProperty() {}
 
-  public Disease() {}
-
-  public Disease(String id) {
-    this.id = id;
+  public SortedProperty(String name) {
+    this.name = name;
   }
 }

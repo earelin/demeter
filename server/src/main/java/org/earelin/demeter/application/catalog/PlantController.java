@@ -16,8 +16,14 @@
 
 package org.earelin.demeter.application.catalog;
 
+import java.util.List;
+import org.earelin.demeter.application.dto.SortedProperty;
+import org.earelin.demeter.domain.catalog.Plant;
 import org.earelin.demeter.repositories.PlantRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -30,6 +36,11 @@ public class PlantController {
     this.repository = repository;
   }
 
-//  @GetMapping
-//  public <Plant> findAll
+  @GetMapping
+  public Page<Plant> findAll(
+      @RequestParam Integer page,
+      @RequestParam Integer size,
+      @RequestParam List<SortedProperty> sort) {
+    throw new UnsupportedOperationException();
+  }
 }
