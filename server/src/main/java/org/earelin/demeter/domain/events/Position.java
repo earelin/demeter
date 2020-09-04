@@ -17,25 +17,31 @@
 package org.earelin.demeter.domain.events;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 import javax.persistence.ManyToOne;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import org.earelin.demeter.domain.catalog.Fertilizer;
-import org.earelin.demeter.domain.utils.Unit;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import org.earelin.demeter.domain.areas.CultivatedArea;
+import org.earelin.demeter.domain.areas.Subarea;
 
-@Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Getter
+@Setter
+@ToString
 @Embeddable
-public class FertilizerDose {
+public class Position {
 
   @ManyToOne
-  @EqualsAndHashCode.Include
-  private Fertilizer fertilizer;
+  private CultivatedArea cultivatedArea;
 
-  private double quantity;
+  @Embedded
+  private Subarea subarea;
 
-  @ManyToOne
-  private Unit unit;
+  public static Position from(CultivatedArea cultivatedArea, Subarea subarea) {
+    Position position = new Position();
+    position.setCultivatedArea(cultivatedArea);
+    position.setSubarea(subarea);
 
-  public FertilizerDose() {}
+    return position;
+  }
 }

@@ -18,7 +18,6 @@ package org.earelin.demeter.domain.catalog;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.earelin.demeter.domain.events.Fertilize;
 import org.earelin.demeter.domain.utils.Unit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

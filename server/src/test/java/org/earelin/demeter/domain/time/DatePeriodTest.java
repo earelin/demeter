@@ -32,42 +32,79 @@ class DatePeriodTest {
   @BeforeEach
   void setUp() {
     datePeriod = new DatePeriod();
+    datePeriod.setYears(YEARS);
+    datePeriod.setMonths(MONTHS);
+    datePeriod.setDays(DAYS);
   }
 
   @Test
   void should_set_and_return_years() {
-    datePeriod.setYears(YEARS);
-
     assertThat(datePeriod.getYears())
         .isEqualTo(YEARS);
   }
 
   @Test
   void should_set_and_return_months() {
-    datePeriod.setMonths(MONTHS);
-
     assertThat(datePeriod.getMonths())
         .isEqualTo(MONTHS);
   }
 
   @Test
   void should_set_and_return_days() {
-    datePeriod.setDays(DAYS);
-
     assertThat(datePeriod.getDays())
         .isEqualTo(DAYS);
   }
 
   @Test
-  void should_return_string_representaion() {
-    datePeriod.setYears(YEARS);
-    datePeriod.setMonths(MONTHS);
-    datePeriod.setDays(DAYS);
-
+  void should_return_string_representation() {
     assertThat(datePeriod.toString())
         .contains(DatePeriod.class.getSimpleName(),
             Integer.toString(YEARS),
             Integer.toString(MONTHS),
             Integer.toString(DAYS));
+  }
+
+  @Test
+  void should_be_equal_to_itself() {
+    assertThat(datePeriod.equals(datePeriod))
+        .isTrue();
+  }
+
+  @Test
+  void should_not_be_equal_to_null() {
+    assertThat(datePeriod.equals(null))
+        .isFalse();
+  }
+
+  @Test
+  void should_be_equal_to_other_object_with_same_data() {
+    DatePeriod compare = DatePeriod.of(YEARS, MONTHS, DAYS);
+
+    assertThat(datePeriod.equals(compare))
+        .isTrue();
+  }
+
+  @Test
+  void should_not_be_equal_to_other_object_with_different_data() {
+    DatePeriod compare = DatePeriod.of(MONTHS, DAYS);
+
+    assertThat(datePeriod.equals(compare))
+        .isFalse();
+  }
+
+  @Test
+  void should_have_the_same_hashCode_than_object_with_same_data() {
+    DatePeriod compare = DatePeriod.of(YEARS, MONTHS, DAYS);
+
+    assertThat(datePeriod.hashCode())
+        .isEqualTo(compare.hashCode());
+  }
+
+  @Test
+  void should_have_a_different_hashCode_than_object_with_different_data() {
+    DatePeriod compare = DatePeriod.of(MONTHS, DAYS);
+
+    assertThat(datePeriod.hashCode())
+        .isNotEqualTo(compare.hashCode());
   }
 }

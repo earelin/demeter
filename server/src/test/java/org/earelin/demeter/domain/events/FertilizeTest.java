@@ -18,98 +18,73 @@ package org.earelin.demeter.domain.events;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.earelin.demeter.domain.catalog.Disease;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class DiseaseAttackTest {
+class FertilizeTest {
 
   public static final String EVENT_ID = "d0008f66-d928-42aa-958c-31d63400ddd5";
-  public static final int EVENT_NUMBER = 4;
-  public static final Disease EVENT_DISEASE = new Disease("9f6ef081-2bfd-41f3-91a8-e40be7ad1505");
 
-  private DiseaseAttack diseaseAttack;
+  private Fertilize fertilize;
 
   @BeforeEach
   void setUp() {
-    diseaseAttack = new DiseaseAttack(EVENT_ID);
-    diseaseAttack.setNumber(EVENT_NUMBER);
-    diseaseAttack.setDisease(EVENT_DISEASE);
+    fertilize = new Fertilize(EVENT_ID);
   }
 
   @Test
   void should_set_id_on_constructor() {
-    assertThat(diseaseAttack.getId())
+    assertThat(fertilize.getId())
         .isEqualTo(EVENT_ID);
   }
 
   @Test
-  void should_set_and_return_number() {
-    assertThat(diseaseAttack.getNumber())
-        .isEqualTo(EVENT_NUMBER);
-  }
-
-  @Test
-  void should_set_and_return_disease() {
-    assertThat(diseaseAttack.getDisease())
-        .isEqualTo(EVENT_DISEASE);
-  }
-
-  @Test
   void should_return_string_representation() {
-    diseaseAttack.setNumber(EVENT_NUMBER);
-
-    assertThat(diseaseAttack.toString())
-        .contains(DiseaseAttack.class.getSimpleName(),
-            EVENT_ID, Integer.toString(EVENT_NUMBER),
-            EVENT_DISEASE.getId());
+    assertThat(fertilize.toString())
+        .contains(Fertilize.class.getSimpleName(), EVENT_ID);
   }
 
   @Test
   void should_be_equal_to_itself() {
-    assertThat(diseaseAttack.equals(diseaseAttack))
+    assertThat(fertilize.equals(fertilize))
         .isTrue();
   }
 
   @Test
   void should_not_be_equal_to_null() {
-    assertThat(diseaseAttack.equals(null))
+    assertThat(fertilize.equals(null))
         .isFalse();
   }
 
   @Test
   void should_be_equal_to_other_object_with_same_id() {
-    DiseaseAttack compare = new DiseaseAttack(EVENT_ID);
+    Fertilize compare = new Fertilize(EVENT_ID);
 
-    assertThat(diseaseAttack.equals(compare))
+    assertThat(fertilize.equals(compare))
         .isTrue();
   }
 
   @Test
   void should_not_be_equal_to_other_object_with_different_id() {
-    DiseaseAttack compare = new DiseaseAttack("d7ea646a-a0f8-4937-8bac-3eaa5c376");
-    diseaseAttack.setNumber(EVENT_NUMBER);
+    Fertilize compare = new Fertilize("d7ea646a-a0f8-4937-8bac-3eaa5c376");
 
-    assertThat(diseaseAttack.equals(compare))
+    assertThat(fertilize.equals(compare))
         .isFalse();
   }
 
   @Test
   void should_have_the_same_hashCode_than_other_object_with_same_id() {
-    diseaseAttack.setNumber(EVENT_NUMBER);
-    DiseaseAttack compare = new DiseaseAttack(EVENT_ID);
+    Fertilize compare = new Fertilize(EVENT_ID);
 
-    assertThat(diseaseAttack.hashCode())
+    assertThat(fertilize.hashCode())
         .isEqualTo(compare.hashCode());
   }
 
   @Test
   void should_not_have_the_same_hashCode_than_other_object_with_different_id() {
-    DiseaseAttack compare = new DiseaseAttack("d7ea646a-a0f8-4937-8bac-3eaa5c376");
-    diseaseAttack.setNumber(EVENT_NUMBER);
+    Fertilize compare = new Fertilize("d7ea646a-a0f8-4937-8bac-3eaa5c376");
 
-    assertThat(diseaseAttack.hashCode())
+    assertThat(fertilize.hashCode())
         .isNotEqualTo(compare.hashCode());
   }
-
 }

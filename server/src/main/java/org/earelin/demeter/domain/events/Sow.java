@@ -1,22 +1,25 @@
 package org.earelin.demeter.domain.events;
 
-
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.earelin.demeter.domain.areas.CultivatedArea;
-import org.earelin.demeter.domain.areas.Subarea;
+import lombok.ToString;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @Entity
 public class Sow extends Event {
 
-  private int seeds;
+  private Integer number;
 
-  @ManyToOne
-  private CultivatedArea cultivatedArea;
+  @Embedded
+  private Position position;
 
-  private Subarea position;
+  public Sow() {}
+
+  public Sow(String id) {
+    super(id);
+  }
 }

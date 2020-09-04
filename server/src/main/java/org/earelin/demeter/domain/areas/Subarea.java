@@ -21,7 +21,6 @@ import javax.persistence.Embeddable;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import lombok.Value;
 
 /**
  * Units are millimeters.

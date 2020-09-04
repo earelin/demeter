@@ -61,4 +61,56 @@ class PestTest {
             PEST_NAME, PEST_DESCRIPTION);
   }
 
+  @Test
+  void should_be_equal_to_itself() {
+    assertThat(pest.equals(pest))
+        .isTrue();
+  }
+
+  @Test
+  void should_not_be_equal_to_null() {
+    assertThat(pest.equals(null))
+        .isFalse();
+  }
+
+  @Test
+  void should_not_be_equal_to_a_different_class() {
+    assertThat(pest.equals(new String("Testing")))
+        .isFalse();
+  }
+
+  @Test
+  void should_be_equal_to_other_object_with_same_id() {
+    Pest compare = new Pest(PEST_ID);
+
+    assertThat(pest.equals(compare))
+        .isTrue();
+  }
+
+  @Test
+  void should_not_be_equal_to_other_object_with_different_id() {
+    Pest compare = new Pest("77b93c0d-a9d8-40c3-a52a-24f5bf3bf69e");
+    compare.setName(PEST_NAME);
+
+    assertThat(pest.equals(compare))
+        .isFalse();
+  }
+
+  @Test
+  void should_have_the_same_hashCode_than_object_with_same_id() {
+    Pest compare = new Pest(PEST_ID);
+
+    assertThat(pest.hashCode())
+        .isEqualTo(compare.hashCode());
+  }
+
+  @Test
+  void should_not_have_the_same_hashCode_than_other_object_with_different_id() {
+    Pest compare = new Pest("77b93c0d-a9d8-40c3-a52a-24f5bf3bf69e");
+    compare.setName(PEST_NAME);
+
+    assertThat(pest.hashCode())
+        .isNotEqualTo(compare.hashCode());
+  }
+
 }

@@ -31,6 +31,7 @@ class DeadTest {
   @BeforeEach
   void setUp() {
     dead = new Dead(EVENT_ID);
+    dead.setNumber(EVENT_NUMBER);
   }
 
   @Test
@@ -41,16 +42,12 @@ class DeadTest {
 
   @Test
   void should_set_and_return_number() {
-    dead.setNumber(EVENT_NUMBER);
-
     assertThat(dead.getNumber())
         .isEqualTo(EVENT_NUMBER);
   }
 
   @Test
   void should_return_string_representation() {
-    dead.setNumber(EVENT_NUMBER);
-
     assertThat(dead.toString())
         .contains(Dead.class.getSimpleName(),
             EVENT_ID, Integer.toString(EVENT_NUMBER));
@@ -70,7 +67,6 @@ class DeadTest {
 
   @Test
   void should_be_equal_to_other_object_with_same_id() {
-    dead.setNumber(EVENT_NUMBER);
     Dead compare = new Dead(EVENT_ID);
 
     assertThat(dead.equals(compare))
@@ -79,9 +75,8 @@ class DeadTest {
 
   @Test
   void should_not_be_equal_to_other_object_with_different_id() {
-    dead.setNumber(EVENT_NUMBER);
     Dead compare = new Dead("d7ea646a-a0f8-4937-8bac-3eaa5c376");
-    dead.setNumber(EVENT_NUMBER);
+    compare.setNumber(EVENT_NUMBER);
 
     assertThat(dead.equals(compare))
     .isFalse();
@@ -89,7 +84,6 @@ class DeadTest {
 
   @Test
   void should_have_the_same_hashCode_than_other_object_with_same_id() {
-    dead.setNumber(EVENT_NUMBER);
     Dead compare = new Dead(EVENT_ID);
 
     assertThat(dead.hashCode())
@@ -98,9 +92,8 @@ class DeadTest {
 
   @Test
   void should_not_have_the_same_hashCode_than_other_object_with_different_id() {
-    dead.setNumber(EVENT_NUMBER);
     Dead compare = new Dead("d7ea646a-a0f8-4937-8bac-3eaa5c376");
-    dead.setNumber(EVENT_NUMBER);
+    compare.setNumber(EVENT_NUMBER);
 
     assertThat(dead.hashCode())
         .isNotEqualTo(compare.hashCode());

@@ -17,7 +17,6 @@
 package org.earelin.demeter.domain.catalog;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;

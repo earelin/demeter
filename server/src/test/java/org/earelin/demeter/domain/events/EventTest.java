@@ -19,7 +19,6 @@ package org.earelin.demeter.domain.events;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.LocalDate;
-import javax.xml.bind.annotation.XmlType.DEFAULT;
 import org.earelin.demeter.domain.Crop;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

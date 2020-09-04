@@ -83,17 +83,6 @@ CREATE TABLE cultivar_harvest (
     ON DELETE CASCADE
 );
 
-CREATE TABLE crop (
-  id VARCHAR(36) NOT NULL,
-  label VARCHAR(128),
-  notes ${text-datatype},
-  cultivar_id VARCHAR(36) NOT NULL,
-  PRIMARY KEY (id),
-  FOREIGN KEY (cultivar_id)
-    REFERENCES cultivar(id)
-    ON DELETE CASCADE
-);
-
 CREATE TABLE cultivated_area (
   id VARCHAR(36) NOT NULL,
   name VARCHAR(64) NOT NULL,
@@ -101,6 +90,26 @@ CREATE TABLE cultivated_area (
   height DOUBLE,
   width DOUBLE,
   PRIMARY KEY (id)
+);
+
+CREATE TABLE crop (
+  id VARCHAR(36) NOT NULL,
+  label VARCHAR(128),
+  notes ${text-datatype},
+  cultivar_id VARCHAR(36) NOT NULL,
+  number INTEGER,
+  height DOUBLE,
+  width DOUBLE,
+  x DOUBLE,
+  y DOUBLE,
+  cultivated_area_id VARCHAR(36),
+  PRIMARY KEY (id),
+  FOREIGN KEY (cultivar_id)
+    REFERENCES cultivar(id)
+    ON DELETE CASCADE,
+  FOREIGN KEY (cultivated_area_id)
+    REFERENCES cultivated_area(id)
+    ON DELETE SET NULL
 );
 
 CREATE TABLE unit (
@@ -205,6 +214,30 @@ CREATE TABLE disease_attack (
     ON DELETE SET NULL
 );
 
+CREATE TABLE fertilize (
+  id VARCHAR(36) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (id)
+    REFERENCES event(id)
+    ON DELETE CASCADE
+);
+
+CREATE TABLE fertilize_doses (
+  fertilize_id VARCHAR(36) NOT NULL,
+  fertilizer_id VARCHAR(36) NOT NULL,
+  quantity DOUBLE,
+  unit_id VARCHAR(36),
+  FOREIGN KEY (fertilize_id)
+    REFERENCES fertilize(id)
+    ON DELETE CASCADE,
+  FOREIGN KEY (fertilizer_id)
+    REFERENCES fertilizer(id)
+    ON DELETE CASCADE,
+  FOREIGN KEY (unit_id)
+    REFERENCES unit(id)
+    ON DELETE SET NULL
+);
+
 CREATE TABLE harvest (
   id VARCHAR(36) NOT NULL,
   quantity DOUBLE,
@@ -221,6 +254,7 @@ CREATE TABLE harvest (
 CREATE TABLE pest_attack (
   id VARCHAR(36) NOT NULL,
   pest_id VARCHAR(36),
+  number INT,
   PRIMARY KEY (id),
   FOREIGN KEY (id)
     REFERENCES event(id)
@@ -232,6 +266,7 @@ CREATE TABLE pest_attack (
 
 CREATE TABLE sow (
   id VARCHAR(36) NOT NULL,
+  number INTEGER,
   x DOUBLE,
   y DOUBLE,
   width DOUBLE,
@@ -249,8 +284,16 @@ CREATE TABLE sow (
 
 CREATE TABLE transplant (
   id VARCHAR(36) NOT NULL,
+  height DOUBLE,
+  width DOUBLE,
+  x DOUBLE,
+  y DOUBLE,
+  cultivated_area_id VARCHAR(36) NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (id)
     REFERENCES event(id)
-    ON DELETE CASCADE
+    ON DELETE CASCADE,
+  FOREIGN KEY (cultivated_area_id)
+    REFERENCES cultivated_area(id)
+    ON DELETE SET NULL
 );
