@@ -1,4 +1,20 @@
-package org.earelin.demeter.application;
+/*
+ * Copyright 2020 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at:
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.earelin.demeter.application.catalog;
 
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static org.earelin.demeter.domain.catalog.FamilyGenerator.FAMILY_ID;
@@ -14,7 +30,6 @@ import com.google.gson.Gson;
 import io.restassured.http.ContentType;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import java.util.Optional;
-import org.earelin.demeter.application.catalog.FamilyController;
 import org.earelin.demeter.application.catalog.dto.CreateFamilyDto;
 import org.earelin.demeter.domain.catalog.Family;
 import org.earelin.demeter.factories.catalog.FamilyFactory;

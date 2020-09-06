@@ -14,13 +14,16 @@
  * limitations under the License.
  */
 
-package org.earelin.demeter.repositories;
+package org.earelin.demeter.application.catalog.dto;
 
-import org.earelin.demeter.domain.catalog.Plant;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.CrudRepository;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-public interface PlantRepository extends CrudRepository<Plant, String> {
-  Page<Plant> findAllByOrderByName(Pageable pageable);
+@Getter
+@Setter
+@ToString
+public class CreatePlantDto {
+  private String name;
+  private String family;
 }

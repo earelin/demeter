@@ -14,13 +14,22 @@
  * limitations under the License.
  */
 
-package org.earelin.demeter.repositories;
+package org.earelin.demeter.factories.catalog;
 
+import java.util.UUID;
+import org.earelin.demeter.domain.catalog.Family;
 import org.earelin.demeter.domain.catalog.Plant;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Component;
 
-public interface PlantRepository extends CrudRepository<Plant, String> {
-  Page<Plant> findAllByOrderByName(Pageable pageable);
+@Component
+public class PlantFactory {
+
+  public Plant build(String name, Family family) {
+    String id = UUID.randomUUID().toString();
+    Plant plant = new Plant(id);
+    plant.setName(name);
+    plant.setFamily(family);
+    return plant;
+  }
+
 }
